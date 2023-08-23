@@ -1,0 +1,113 @@
+/* Reset default margin and padding */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Basic styling for the header */
+  header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  /* Styling for the input field */
+  #inputNumber, #querytextInput {
+    width: 1000px;
+    padding: 5px;
+  }
+  
+  /* Styling for the checkbox section */
+  .checkbox-section {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f8f8;
+  }
+  
+  .checkbox-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    max-height: 200px; /* Set a maximum height for the checkbox options */
+    overflow-y: auto; /* Add a vertical scrollbar when content exceeds the maximum height */
+  }
+  
+  /* Styling for the image section */
+  .image-section {
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .image-container {
+    width: 24%; /* You can adjust this width based on your preference */
+    margin-bottom: 20px;
+    overflow: hidden;
+    border: 2px solid #ddd; /* Add a border around the image container */
+    border-radius: 5px; /* Add some border radius for a rounded look */
+    transition: border-color 0.3s ease; /* Add a smooth transition effect */
+  }
+  
+  .image-container:hover {
+    border-color: #aaa; /* Change border color on hover */
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+ 
+  .horizontal-container {
+    display: flex;
+    flex-wrap: wrap; /* 允许换行 */
+    justify-content: center;
+    align-items: center;
+}
+  .colored-box {
+    background-color: #F0E68C;
+    padding: 10px 20px; /* 调整内边距 */
+    border: 1px solid #DAA520;
+    border-radius: 5px;
+    margin: 5px; /* 添加间距 */
+    text-align: center;
+    word-wrap: break-word; /* 允许换行 */
+  
+}
+
+.colored-box p {
+  margin: 0; /* 清除段落的默认边距 */
+  color: #333; /* 设置文字颜色 */
+  font-size: 16px; /* 设置文字大小 */
+  line-height: 1.2; /* 设置行高 */
+  text-align: center;
+}
+
+iframe {
+  width: 380px; /* 设置iframe宽度为100% */
+  height: 350px;
+  justify-content: center;
+  align-items: center;
+  border: none; /* 移除iframe边框 */
+}
+
+/* 当p元素被hover时，通过::before插入.tooltip的内容 */
+#behovered:hover::before {
+  content: attr(data-tooltip-content); /* 获取p元素的data-tooltip-content属性值 */
+  display: block;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  z-index: 1;
+  top: -30px;
+  left: 0;
+}
+
+/* 隐藏.tooltip */
+.tooltip {
+  display: none;
+}

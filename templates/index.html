@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/style.css">
+  <title>video search test</title>
+  <style>
+        .tooltip {
+      display: none;
+      position: absolute;
+      background-color: white;
+      color: black;
+      padding: 10px; /* 调整内边距 */
+      border-radius: 5px;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      max-width: 400px; /* 固定最大宽度 */
+      overflow: auto; /* 添加滚动条 */
+      max-height: 150px; /* 固定最大高度 */
+    }
+    
+    .colored-box-container {
+      position: relative;
+      display: inline-block;
+      border: 2px solid #ccc; /* 添加边框样式 */
+      padding: 10px; /* 添加内边距 */
+    }
+    
+    .colored-box:hover + .tooltip {
+      display: block;
+      opacity: 1; /* 悬停时显示提示框并设置不透明度 */
+      border: 2px solid #ccc; /* 添加边框样式 */
+      padding: 10px; /* 添加内边距 */
+    }
+  </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var coloredBoxContainers = document.querySelectorAll(".colored-box-container");
+  
+        coloredBoxContainers.forEach(function(container) {
+          container.addEventListener("mousemove", function(event) {
+            var tooltip = container.querySelector(".tooltip");
+            tooltip.style.top = (event.clientY + 10) + "px";
+            tooltip.style.left = (event.clientX + 10) + "px";
+          });
+        });
+      });
+    </script>
+</head>
+<body>
+  <form action="/" method="POST">
+  <header>
+    <input type="number" id="inputNumber" name = "inputNumber" placeholder="Enter a number from 0-100(default is 23)">
+    <br>
+    <input style="margin: 10px;" id="querytextInput" name="querytextInput" placeholder="Enter your own queryText or select below(use comma to seperate different queryText)(type in selectALLoptions if you want to select all below)">
+  </header>
+  <section class="checkbox-section">
+    <label>Options (select multiple):</label>
+    <div class="checkbox-options">
+      <table>
+        <tbody>
+          {% for k, y in options.items()%}
+          <tr>
+            <td><input type="checkbox" name="checkbox" id="checkbox" value={{ k }}></td>
+            <td><label for={{ k }}>{{ y }}</label></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <button method="POST" id="submitButton" type="submit">Submit</button>  
+</form>
+  <section class="image-section">
+    {% for k, v in vandU.items()%}
+    <div class="image-container">
+      <iframe src="{{ v }}" alt="{{ v }}"  id="fence_people" name="fence_people"></iframe>
+      <div class="horizontal-container">
+        {% for y in NameandTag[k]%}  
+        <div class="colored-box" id="box">
+          <p id="behovered">{{ y }}</p>
+        </div>
+          <p class="tooltip" >
+            {% for infos in additional_info[y][k]%}
+              {{ infos }}<br>
+            {% endfor %}
+          </p>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+</body>
+</html>
