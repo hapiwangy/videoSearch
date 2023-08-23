@@ -17,7 +17,7 @@ def root():
     sequence = {}
     NameandTag = {'fence_people':[], 'fence_dog':[], "dock_cargo":[], "AI_360":[]}
     if request.method == 'POST':
-        threshold = int(request.form.get('inputNumber')) / 100
+        threshold = float(request.form.get('inputNumber'))
         selected_options = request.form.getlist('checkbox')
         ownqueryText = request.form.get('querytextInput')
         # input_number是設定threshold、selected_options設定要被查詢的項目
@@ -29,8 +29,8 @@ def root():
             Query = [names[x] for x in selected_options]
             for oqT in ownqueryText:
                 Query.append(oqT)
-        sequence = VideoSearchApi(threshold=threshold, query=Query)
-        blank = ""
+        sequence = VideoSearchApi(threshold=float(threshold), query=Query)
+        
         # 讓圖片有特定的tag
         for x, y in sequence.items():
             for n, t in NameandTag.items():

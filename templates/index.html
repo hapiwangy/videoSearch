@@ -52,7 +52,7 @@
 <body>
   <form action="/" method="POST">
   <header>
-    <input type="number" id="inputNumber" name = "inputNumber" placeholder="Enter a number from 0-100(default is 23)">
+    <input id="inputNumber" name = "inputNumber" placeholder="Enter a float number from 0-1">
     <br>
     <input style="margin: 10px;" id="querytextInput" name="querytextInput" placeholder="Enter your own queryText or select below(use comma to seperate different queryText)(type in selectALLoptions if you want to select all below)">
   </header>
@@ -83,8 +83,14 @@
           <p id="behovered">{{ y }}</p>
         </div>
           <p class="tooltip" >
+            {{ y }}<br>
             {% for infos in additional_info[y][k]%}
-              {{ infos }}<br>
+            |relevance : {{ infos ['relevance']}} </br>
+            |start : {{ infos ['start']}} </br>
+            |duration : {{ infos['duration'] }} </br>
+            |end : {{ infos['end'] }} </br>
+            |best : {{ infos['best'] }} </br>
+          </br>
             {% endfor %}
           </p>
         {% endfor %}
