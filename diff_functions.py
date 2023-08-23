@@ -12,8 +12,8 @@ def SASproducer()->str:
     from datetime import datetime, timedelta
     from urllib.parse import quote
 
-    STORAGE_ACCOUNT_NAME = "ailabstorage1"
-    ACCOUNT_ACCESS_KEY = "ZZFZNhx0W4BRWnpmAqmiBxLy9aULfTe0nKtG3hdi7GV9QnL7YRRRznbTZiVxbD7GeARZyVf7UGnL+AStqaVVlw=="
+    STORAGE_ACCOUNT_NAME = "<your storage account name>"
+    ACCOUNT_ACCESS_KEY = "<your account access key>"
 
     # get SAS token for photos
     def get_sas_token_blob():
@@ -36,7 +36,7 @@ def VideoSearchApi(threshold: int, query: list[str])->dict[str,dict[str,list[dic
         classify[q] = {}
         # 呼叫api
         response = requests.post(url="https://mcapscognitiveeastus.cognitiveservices.azure.com/vision-retrieval/retrieval/indexes/tsmc:query?api-version=2023-01-15-preview",
-                             headers={"Ocp-Apim-Subscription-Key" : "aba20e6665664e02ad94b93c42a89705",
+                             headers={"Ocp-Apim-Subscription-Key" : "<your ocp-Apim_subscription-key>",
                                       "Content-Type" : "application/json"},
                              data = json.dumps({"queryText":f"{q}"}))
         test_data = json.loads(response.text)
@@ -59,7 +59,7 @@ def VideoandUrl()->dict[str, str]:
     token = SASproducer()
     import requests
     response = requests.get("https://mcapscognitiveeastus.cognitiveservices.azure.com/vision-retrieval/retrieval/indexes/tsmc/documents?api-version=2023-01-15-preview",
-                        headers = {"Ocp-Apim-Subscription-Key": "aba20e6665664e02ad94b93c42a89705"})
+                        headers = {"Ocp-Apim-Subscription-Key": "<your ocp-Apim_subscription-key>"})
     import json
     result = json.loads(response.text)
     result = result['value']
